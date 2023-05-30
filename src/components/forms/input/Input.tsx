@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Field, ErrorMessage } from 'formik';
 
-import styles from './input.module.css';
+import styles from './Input.module.css';
 
 interface InputProps {
     label: string;
