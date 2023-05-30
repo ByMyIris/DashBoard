@@ -1,0 +1,17 @@
+
+.formGroup {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    width: 100%;
+    border: none;
+}
+
+
+.label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+
