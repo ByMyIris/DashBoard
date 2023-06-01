@@ -19,6 +19,7 @@ const CadastrarInformacoes: React.FC = () => {
   const [informacoes, setInformacoes] = useState<Informacoes>();
   
   const initialValues: Informacoes = {
+    id: 0,
     foto: "",
     nome: "",
     cargo: "",

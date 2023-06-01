@@ -9,7 +9,7 @@ export interface Informacoes {
 }
 
 export const createInformacoes = async (informacoes:Informacoes): Promise<Informacoes> => {
-    const response = await api.post<Informacoes>('/experiencia', informacoes);
+    const response = await api.post<Informacoes>('/informacoes', informacoes);
     return response.data;
 }
 
