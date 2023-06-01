@@ -8,7 +8,7 @@ import * as Yup from 'yup';
 import { AxiosError } from 'axios';
 import Textarea from '../../../components/forms/textarea';
 import { Informacoes, getInformacoes, deleteInformacoes, createOrUpdateInformacoes } from "../../../services/informacoesService";
-import InformacoesCard from "./InformacoesCard/InformacoesCard";
+import InformacoesCard from "./InformacoesCard";
 
 import Form from '../../../components/forms/form';
 import Button from "../../../components/comoon/button";
@@ -40,7 +40,7 @@ const CadastrarInformacoes: React.FC = () => {
     } catch (error) {
       if (error instanceof AxiosError) {
         if(error.response?.status !== 404) {
-          console.error('Erro ao buscar informacções:', error);
+          console.error('Erro ao buscar informações:', error);
         }
       } else {
         console.error('Ocorreu um erro desconhecido ao buscar informações', error);

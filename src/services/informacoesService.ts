@@ -28,7 +28,7 @@ export const updateInformacoes = async (informacoes:Informacoes): Promise<Inform
 }
 
 export const createOrUpdateInformacoes = async (informacoes:Informacoes): Promise<Informacoes> => {
-    if (!informacoes.id) {
+    if (informacoes.id) {
         return await updateInformacoes(informacoes);
     } else {
         return await createInformacoes(informacoes);
