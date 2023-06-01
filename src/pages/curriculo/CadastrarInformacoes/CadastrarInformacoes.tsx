@@ -7,7 +7,7 @@ import Input from '../../../components/forms/input';
 import * as Yup from 'yup';
 import { AxiosError } from 'axios';
 import Textarea from '../../../components/forms/textarea';
-import { Informacoes, updateInformacoes, getInformacoes, deleteInformacoes, createOrUpdateInformacoes } from "../../../services/informacoesService";
+import { Informacoes, getInformacoes, deleteInformacoes, createOrUpdateInformacoes } from "../../../services/informacoesService";
 import InformacoesCard from "./InformacoesCard/InformacoesCard";
 
 import Form from '../../../components/forms/form';
@@ -19,7 +19,6 @@ const CadastrarInformacoes: React.FC = () => {
   const [informacoes, setInformacoes] = useState<Informacoes>();
   
   const initialValues: Informacoes = {
-    id: 1,
     foto: "",
     nome: "",
     cargo: "",
