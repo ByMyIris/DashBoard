@@ -1,9 +1,14 @@
 import { User, getUserByEmail } from "./userService";
 
-export async function login(email: string, password: string): Promise<User> {
-    const user = await getUserByEmail(email);
+export interface LoginValues {
+    email: string;
+    password: string;
+}
+
+export const login = async (loginValues: LoginValues): Promise<User> => {
+    const user = await getUserByEmail(loginValues.email);
     
-    if (user && user.password === password) {
+    if (user && user.password === loginValues.password) {
         return user;
     } else {
         throw new Error("Email e/ou password inválido(s)");

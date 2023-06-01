@@ -13,7 +13,7 @@ const Sidebar = () => {
             <nav className={styles.navigation}>
                 <ul>
                     <li>
-                        <NavLink to='/' className={styles.active}>
+                        <NavLink to='/'>
                             <h3>Home</h3>
                         </NavLink>
                     </li>
@@ -21,17 +21,17 @@ const Sidebar = () => {
                 <h3>Currículo</h3>
                 <ul>
                     <li>
-                        <NavLink to='/curriculo/informacoes/cadastro' className={styles.active}>
+                        <NavLink to='/curriculo/informacoes/cadastro' >
                             Cadastrar Informações
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/curriculo/experiencia/cadastro' className={styles.active}>
+                        <NavLink to='/curriculo/experiencia/cadastro' >
                             Cadastrar Experiência
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/curriculo/experiencia/listagem' className={styles.active}>
+                        <NavLink to='/curriculo/experiencia/listagem' >
                             Lista de Experiências
                         </NavLink>
                     </li>
@@ -39,12 +39,12 @@ const Sidebar = () => {
                 <h3>Portfólio</h3>
                 <ul>
                     <li>
-                        <NavLink to='/portfolio/cadastro' className={styles.active}>
+                        <NavLink to='/portfolio/cadastro' >
                             Cadastrar Portfólio
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/portfolio/lista' className={styles.active}>
+                        <NavLink to='/portfolio/lista' >
                             Lista de Portfólios
                         </NavLink>
                     </li>
@@ -52,7 +52,7 @@ const Sidebar = () => {
 
                 <ul>
                     <li>
-                        <NavLink onClick={logout} to='/login' className={styles.active}>
+                        <NavLink onClick={logout} to='/login' >
                             <h3>Logout</h3>
                         </NavLink>
                     </li>

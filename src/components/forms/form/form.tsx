@@ -7,7 +7,8 @@ import { Formik, FormikHelpers, FormikProps, FormikValues, Form as FormikForm } 
 
 interface FormProps<T> {
     initialValues: T;
-    validationSchema: Yup.ObjectSchema<Partial<any>>;
+    validationSchema: Yup.ObjectSchema<Omit<Partial<T>, 'id'>>;
+    enableReinitialize?: boolean;
     onSubmit: (values: T, formikHelpers: FormikHelpers<T>) => void | Promise<void>;
     children: (formikProps: FormikProps<T>) => React.ReactNode;
 }
@@ -18,6 +19,7 @@ const Form = <T extends FormikValues>({ initialValues, validationSchema, onSubmi
             <Formik 
                 initialValues={initialValues}
                 validationSchema={validationSchema}
+                enableReinitialize={true}
                 onSubmit={onSubmit}
             >
                 {(formikProps) => (

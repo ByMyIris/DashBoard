@@ -1,8 +1,11 @@
 import React, { useEffect } from "react";
 
 import styles from './ListaExperiencia.module.css';
+
 import { Experiencia, deleteExperiencia, getExperiencia } from "../../../services/experienciaService";
 import { useNavigate } from "react-router-dom";
+
+import { Table, Column } from '../../../components/comoon/table';
 
 const ListaExperiencia: React.FC = () => {
 
@@ -27,9 +30,9 @@ const ListaExperiencia: React.FC = () => {
         navigate('/curriculo/experiencia/cadastro', { state: experiencia });
     };
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (experiencia: Experiencia) => {
         try {
-            await deleteExperiencia(id);
+            await deleteExperiencia(experiencia.id);
             fetchExperiencias();
             alert('Experiência excluída com sucesso!');
         } catch (error) {
@@ -38,45 +41,22 @@ const ListaExperiencia: React.FC = () => {
         }
     };
 
+    const columns: Column<Experiencia>[] = [
+        { header: 'Título', accessor: 'titulo' },
+        { header: 'Descrição', accessor: 'descricao' },
+        { header: 'Tipo', accessor: 'tipo' },
+        { header: 'Data de Início', accessor: 'dataInicio' },
+        { header: 'Data de Fim', accessor: 'dataFim' },
+    ]
+
     return (
-    <>
-    <h2 className={styles.title}>Lista de Experiências</h2>
-
-        <table className={styles.table}>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Descrição</th>
-                    <th>Tipo</th>
-                    <th>Ano Início</th>
-                    <th>Ano Fim</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {experiencias.map((experiencia, index) => (
-                    <tr key={index}>
-                        <td>{experiencia.titulo}</td>
-                        <td>{experiencia.descricao}</td>
-                        <td>{experiencia.tipo}</td>
-                        <td>{experiencia.dataInicio}</td>
-                        <td>{experiencia.dataFim}</td>
-                        <td>
-                            <button onClick={() => handleEdit(experiencia)}>Editar</button>
-                            <button onClick={() => handleDelete(experiencia.id)}>Excluir</button>
-                        </td>
-                    </tr>
-                
-                
-                
-                ))}
-            </tbody>
-
-
-        </table>
-
-        </>
-    )
-}
+    <Table 
+    columns={columns}
+    data={experiencias}
+    handleEdit={handleEdit}
+    handleDelete={handleDelete}
+    />
+    );
+};
 
 export default ListaExperiencia;

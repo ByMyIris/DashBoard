@@ -7,33 +7,33 @@ export interface Portfolio {
     title: string;
 }
 
-export const createPortfolio = async (portfolio: Portfolio) => {
-    const response = await api.post('/portfolio', portfolio);
+export const createPortfolio = async (portfolio: Portfolio): Promise<Portfolio> => {
+    const response = await api.post<Portfolio>('/portfolio', portfolio);
     return response.data;
 }
 
-export const getPortfolio = async () => {
-    const response = await api.get('/portfolio');
+export const getPortfolio = async (): Promise<Portfolio[]> => {
+    const response = await api.get<Portfolio[]>('/portfolio');
     return response.data;
 }
 
-export const getPortfolioById = async (id: number) => {
-    const response = await api.get(`/portfolio/${id}`);
+export const deletePortfolio = async (id: number | undefined): Promise<Portfolio> => {
+    const response = await api.delete<Portfolio>(`/portfolio/${id}`);
     return response.data;
 }
 
-export const updatePortfolio = async (portfolio: Portfolio) => {
-    const response = await api.put(`/portfolio/${portfolio.id}`, portfolio);
+export const updatePortfolio = async (portfolio: Portfolio): Promise<Portfolio> => {
+    const response = await api.put<Portfolio>(`/portfolio/${portfolio.id}`, portfolio);
     return response.data;
 }
 
-export const deletePortfolio = async (id: number) => {
-    const response = await api.delete(`/portfolio/${id}`);
+export const getProjeto = async (id: number): Promise<Portfolio> => {
+    const response = await api.get<Portfolio>(`/portfolio/${id}`);
     return response.data;
 }
 
-export const createOrUpdatePortfolio = async (portfolio: Portfolio) => {
-    if (portfolio.id === 0) {
+export const createOrUpdatePortfolio = async (portfolio: Portfolio): Promise<Portfolio> => {
+    if (!portfolio.id) {
         return await createPortfolio(portfolio);
     } else {
         return await updatePortfolio(portfolio);

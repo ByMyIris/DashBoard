@@ -5,8 +5,9 @@ import styles from "./CadastrarInformacoes.module.css";
 import Input from '../../../components/forms/input';
 
 import * as Yup from 'yup';
+import { AxiosError } from 'axios';
 import Textarea from '../../../components/forms/textarea';
-import { Informacoes, updateInformacoes, getInformacoes } from "../../../services/informacoesService";
+import { Informacoes, updateInformacoes, getInformacoes, deleteInformacoes, createOrUpdateInformacoes } from "../../../services/informacoesService";
 import InformacoesCard from "./InformacoesCard/InformacoesCard";
 
 import Form from '../../../components/forms/form';
@@ -15,7 +16,7 @@ import Title from "../../../components/comoon/title";
 
 const CadastrarInformacoes: React.FC = () => {
 
-  const [informacoes, setInformacoes] = useState<Informacoes>({} as Informacoes);
+  const [informacoes, setInformacoes] = useState<Informacoes>();
   
   const initialValues: Informacoes = {
     id: 1,
@@ -37,17 +38,23 @@ const CadastrarInformacoes: React.FC = () => {
       const informacao = await getInformacoes();
       setInformacoes(informacao);
     } catch (error) {
-      console.error('Erro ao buscar informaç~ies:', error);
+      if (error instanceof AxiosError) {
+        if(error.response?.status !== 404) {
+          console.error('Erro ao buscar informacções:', error);
+        }
+      } else {
+        console.error('Ocorreu um erro desconhecido ao buscar informações', error);
+      }
     }
-  }
+  };
 
   useEffect(() => {
     fetchInformacao();
   }, []);
 
-  const onSubmit = async (values: Informacoes,{ resetForm }: { resetForm: () => void }) => {
+  const onSubmit = async (values: Informacoes) => {
     try {
-      await updateInformacoes(values);
+      await createOrUpdateInformacoes(values);
       setInformacoes(values);
       console.log(values);
       // resetForm();
@@ -60,8 +67,8 @@ const CadastrarInformacoes: React.FC = () => {
 
   const handleDelete = async () => {
     try {
-      await updateInformacoes(initialValues);
-      setInformacoes(initialValues);
+      await deleteInformacoes();
+      setInformacoes(undefined);
       alert('Informacões deletadas com sucesso!');
     } catch (error) {
       console.error('Erro ao deletar informações:', error);
@@ -72,13 +79,14 @@ const CadastrarInformacoes: React.FC = () => {
   return (
     <div className={styles.container}>
       <Form
-              initialValues={initialValues}
+              initialValues={informacoes || initialValues}
+              enableReinitialize={true}
               validationSchema={validationSchema}
               onSubmit={onSubmit}
         >
         {({ errors, touched }) => (
           <>
-            <Title>Cadastrar Informações</Title>
+            <Title> Informações</Title>
 
             <Input 
                 label='Foto'
@@ -115,15 +123,12 @@ const CadastrarInformacoes: React.FC = () => {
       </Form>
 
     {informacoes &&
-      Object.entries(informacoes).some(
-        ([key, value]) => key !== "id" && value.trim() !== ""
-      ) && (
         <div className={styles.cardContainer}>
           <InformacoesCard informacoes={informacoes} />
 
           <Button onClick={handleDelete} red>Deletar</Button>
         </div>
-      )}  
+      }  
     </div>
   );
 };

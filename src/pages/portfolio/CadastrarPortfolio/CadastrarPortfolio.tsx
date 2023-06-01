@@ -1,7 +1,7 @@
 import React from "react";
 
 import * as Yup from 'yup';
-import { Field, ErrorMessage } from 'formik';
+// import { Field, ErrorMessage } from 'formik';
 import Input from '../../../components/forms/input';
 
 import styles from './CadastrarPortfolio.module.css';
@@ -36,14 +36,14 @@ const CadastrarPortfolio = () => {
             await createOrUpdatePortfolio(values);
             console.log(values);
             resetForm();
-            navigate("/portfolio/cadastro");
+            navigate("/portfolio/lista");
             alert("Formulário enviado com sucesso!");
         } catch (error) {
             console.log(error);
             alert("Ocorreu um erro ao enviar o formulário");
         }
         
-      };
+    };
 
     return (
         <div className={styles.formWrapper}>
@@ -55,7 +55,12 @@ const CadastrarPortfolio = () => {
             >
                 {({ errors, touched }) => (
                 <>
-                    <Title>Cadastro de Portfólio</Title>
+                    {
+                        !portfolio ?
+                            <Title>Cadastro de Portfólio</Title>
+                            :
+                            <Title>Atualização de Portfólio</Title>
+                    }
 
                     <Input
                         label='Link'

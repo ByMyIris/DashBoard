@@ -1,20 +1,17 @@
 import React from 'react';
 
-import styles from "./CadastrarExperiencia.module.css";
-import Input from '../../../components/forms/input';
-
 import * as Yup from 'yup';
+import { useLocation, useNavigate } from 'react-router-dom';
 // import { Formik, Form } from "formik";
 
 import Textarea from '../../../components/forms/textarea/Textarea';
 import Select from '../../../components/forms/select/Select';
-
-import { Experiencia, createOrUpdateExperiencia } from '../../../services/experienciaService';
-import { useLocation, useNavigate } from 'react-router-dom';
-
 import Form from '../../../components/forms/form';
 import Button from "../../../components/comoon/button";
 import Title from "../../../components/comoon/title";
+import Input from '../../../components/forms/input';
+
+import { Experiencia, createOrUpdateExperiencia } from '../../../services/experienciaService';
 
 
 const CadastrarExperiencia: React.FC = () => {
@@ -55,15 +52,19 @@ const CadastrarExperiencia: React.FC = () => {
 
 
     return (
-        <div className={styles.formWrapper}>
             <Form
-                    initialValues={initialValues}
+                    initialValues={experiencia || initialValues}
                     validationSchema={validationSchema}
                     onSubmit={onSubmit}
             >
                 {({ errors, touched }) => (
                     <>
-                    <Title>Cadastro de Experiência</Title>
+                    {
+                        !experiencia ?
+                            <Title>Cadastro de Experiência</Title>
+                            :
+                            <Title>Atualização de Experiência</Title>
+                    }
                     
                     <Input 
                         label='Título'
@@ -92,12 +93,14 @@ const CadastrarExperiencia: React.FC = () => {
                     <Input 
                         label='Ano de Início'
                         name='dataInicio'
+                        type='number'
                         errors={errors.dataInicio}
                         touched={touched.dataInicio}
                     />
                     <Input 
                         label='Ano de Fim'
                         name='dataFim'
+                        type='number'
                         errors={errors.dataFim}
                         touched={touched.dataFim}
                     />
@@ -106,7 +109,6 @@ const CadastrarExperiencia: React.FC = () => {
                 </>
                 )}
             </ Form>
-        </ div>
     );
 };
 

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
-
-import styles from './ListaPortfolio.module.css';
 import { useNavigate } from 'react-router-dom';
+
+import { Table, Column } from '../../../components/comoon/table/table';
+
 import { Portfolio, deletePortfolio, getPortfolio } from '../../../services/portfolioService';
 
 const ListaPortfolio: React.FC = () => {
@@ -28,9 +29,9 @@ const ListaPortfolio: React.FC = () => {
         navigate('/portfolio/cadastro', { state: portfolio });
     };
 
-    const handleDelete = async (id: number) => {
+    const handleDelete = async (portfolio: Portfolio) => {
         try {
-            await deletePortfolio(id);
+            await deletePortfolio(portfolio.id);
             fetchPortfolios();
             alert('Portfólio excluído com sucesso!');
         } catch (error) {
@@ -39,35 +40,19 @@ const ListaPortfolio: React.FC = () => {
         }
     };
 
+    const columns: Column<Portfolio>[] = [
+        { header: 'Titulo', accessor: 'title' },
+        { header: 'Imagem', accessor: 'image' },
+        { header: 'Link', accessor: 'link' },
+    ];
+
     return (
-
-        <>
-        <h2 className={styles.title}>Lista de Portfólio</h2>
-
-        <table className={styles.table}>
-            <thead>
-                <tr>
-                    <th>Título</th>
-                    <th>Imagem</th>
-                    <th>Link</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {portfolios.map((portfolio, index) => (
-                    <tr key={index}>
-                        <td>{portfolio.title}</td>
-                        <td><img src={portfolio.image} alt={portfolio.title} className={styles.image} /></td>
-                        <td><a href={portfolio.link} target="_blank" rel="noreferrer">{portfolio.link}</a></td>
-                        <td>
-                            <button onClick={() => handleEdit(portfolio)}>Editar</button>
-                            <button onClick={() => handleDelete(portfolio.id)}>Excluir</button>
-                        </td>
-                    </tr>
-                ))}
-            </tbody>
-        </table>
-        </>
+        <Table 
+        columns={columns}
+        data={portfolios}
+        handleEdit={handleEdit}
+        handleDelete={handleDelete}
+        />
     );
 };
 
