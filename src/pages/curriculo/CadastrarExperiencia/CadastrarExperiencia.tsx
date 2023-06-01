@@ -39,7 +39,6 @@ const CadastrarExperiencia: React.FC = () => {
     const onSubmit = async (values: Experiencia, { resetForm }: { resetForm: () => void }) => {
         try {
             await createOrUpdateExperiencia(values);
-            console.log(values);
             resetForm();
             navigate("/curriculo/experiencia/listagem");
             alert("Formulário enviado com sucesso!");
