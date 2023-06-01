@@ -12,7 +12,7 @@ import { Experiencia, getExperienciaByTipo } from '../../services/experienciaSer
 
 const Home = () => {
     const [experienciasAcademicas, setExperienciasAcademicas] = useState<Experiencia[]>([]);
-    const [experienciasProfissionais, setExperienciasProfissionais] = useState<Experiencia[]>([]);
+    const [experienciasProfissional, setExperienciasProfissional] = useState<Experiencia[]>([]);
     const [portfolio, setPortfolio] = useState<Portfolio[]>([]);
 
     const fetchExperienciasAcademicas = async () => {
@@ -24,10 +24,10 @@ const Home = () => {
         }
     };
 
-    const fetchExperienciasProfissionais = async () => {
+    const fetchExperienciasProfissional = async () => {
         try {
             const response = await getExperienciaByTipo('profissional');
-            setExperienciasAcademicas(response);
+            setExperienciasProfissional(response);
         } catch (error) {
             console.log(error);
         }
@@ -44,7 +44,7 @@ const Home = () => {
 
     useEffect(() => {
         fetchExperienciasAcademicas();
-        fetchExperienciasProfissionais();
+        fetchExperienciasProfissional();
         fetchPortfolio();
     }, []);
 
@@ -60,8 +60,8 @@ const Home = () => {
                 />
 
                 <InfoBox 
-                    title='Experiencias Profissionais'
-                    value={experienciasProfissionais.length}
+                    title='Experiencias Profissional'
+                    value={experienciasProfissional.length}
                     icon={<FaBriefcase/>}
                 />
 
