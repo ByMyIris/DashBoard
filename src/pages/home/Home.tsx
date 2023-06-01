@@ -2,22 +2,22 @@ import React, { useEffect, useState } from "react";
 
 import styles from './Home.module.css';
 
-import { FaGraduationCap, FaBriefCase, FaFolder } from 'react-icons/fa';
+import { FaGraduationCap, FaBriefcase, FaFolder } from 'react-icons/fa';
 
 import Title from '../../components/comoon/title';
 import InfoBox from '../../components/comoon/infoBox';
 
-import { Projeto, getPortfolio } from '../../services/portfolioService';
-import { Experiencia, getExperienciasByTipo } from '../../services/experienciaService';
+import { Portfolio, getPortfolio } from '../../services/portfolioService';
+import { Experiencia, getExperienciaByTipo } from '../../services/experienciaService';
 
 const Home = () => {
     const [experienciasAcademicas, setExperienciasAcademicas] = useState<Experiencia[]>([]);
     const [experienciasProfissionais, setExperienciasProfissionais] = useState<Experiencia[]>([]);
-    const [portfolio, setPortfolio] = useState<Projeto[]>([]);
+    const [portfolio, setPortfolio] = useState<Portfolio[]>([]);
 
     const fetchExperienciasAcademicas = async () => {
         try {
-            const response = await getExperienciasByTipo('academico');
+            const response = await getExperienciaByTipo('academico');
             setExperienciasAcademicas(response);
         } catch (error) {
             console.log(error);
@@ -26,7 +26,7 @@ const Home = () => {
 
     const fetchExperienciasProfissionais = async () => {
         try {
-            const response = await getExperienciasByTipo('profissional');
+            const response = await getExperienciaByTipo('profissional');
             setExperienciasAcademicas(response);
         } catch (error) {
             console.log(error);
@@ -62,7 +62,7 @@ const Home = () => {
                 <InfoBox 
                     title='Experiencias Profissionais'
                     value={experienciasProfissionais.length}
-                    icon={<FaBriefCase/>}
+                    icon={<FaBriefcase/>}
                 />
 
                 <InfoBox 
