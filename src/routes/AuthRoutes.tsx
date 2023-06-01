@@ -30,8 +30,8 @@ const AppRoutes: React.FC = () => {
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/curriculo/informacoes/cadastro" element={<CadastrarInformacoes />} />
-                <Route path="/curriculo/experiencia/cadastro" element={<CadastrarExperiencia />} />
-                <Route path="/curriculo/experiencia/listagem" element={<ListaExperiencia />} />
+                <Route path="/curriculo/experiencias/cadastro" element={<CadastrarExperiencia />} />
+                <Route path="/curriculo/experiencias/listagem" element={<ListaExperiencia />} />
                 <Route path="/portfolio/cadastro" element={<CadastrarPortfolio />} />
                 <Route path="/portfolio/lista" element={<ListaPortfolio />} />
             </Routes>

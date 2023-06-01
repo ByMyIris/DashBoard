@@ -40,7 +40,7 @@ const CadastrarExperiencia: React.FC = () => {
         try {
             await createOrUpdateExperiencia(values);
             resetForm();
-            navigate("/curriculo/experiencia/listagem");
+            navigate("/curriculo/experiencias/listagem");
             alert("Formulário enviado com sucesso!");
         } catch (error) {
             console.log(error);

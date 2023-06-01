@@ -27,7 +27,7 @@ const ListaExperiencia: React.FC = () => {
     }, []);
 
     const handleEdit = (experiencia: Experiencia) => {
-        navigate('/curriculo/experiencia/cadastro', { state: experiencia });
+        navigate('/curriculo/experiencias/cadastro', { state: experiencia });
     };
 
     const handleDelete = async (experiencia: Experiencia) => {

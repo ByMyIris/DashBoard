@@ -10,32 +10,32 @@ export interface Experiencia {
 }
 
 export const createExperiencia = async (experiencia: Experiencia): Promise<Experiencia> => {
-    const response = await api.post<Experiencia>('/experiencia', experiencia);
+    const response = await api.post<Experiencia>('/experiencias', experiencia);
     return response.data;
 }
 
 export const getExperiencia = async (): Promise<Experiencia[]> => {
-    const response = await api.get<Experiencia[]>('/experiencia');
+    const response = await api.get<Experiencia[]>('/experiencias');
     return response.data;
 }
 
 export const getExperienciaById = async (id: number): Promise<Experiencia> => {
-    const response = await api.get<Experiencia>(`/experiencia/${id}`);
+    const response = await api.get<Experiencia>(`/experiencias/${id}`);
     return response.data;
 }
 
 export const getExperienciaByTipo = async (tipo: string): Promise<Experiencia[]> => {
-    const response = await api.get<Experiencia[]>(`/experiencia?tipo=${tipo}`);
+    const response = await api.get<Experiencia[]>(`/experiencias?tipo=${tipo}`);
     return response.data;
 }
 
 export const updateExperiencia = async (experiencia: Experiencia): Promise<Experiencia> => {
-    const response = await api.put(`/experiencia/${experiencia.id}`, experiencia);
+    const response = await api.put(`/experiencias/${experiencia.id}`, experiencia);
     return response.data;
 }
 
 export const deleteExperiencia = async (id: number | undefined): Promise<Experiencia> => {
-    const response = await api.delete<Experiencia>(`/experiencia/${id}`);
+    const response = await api.delete<Experiencia>(`/experiencias/${id}`);
     return response.data;
 }
 

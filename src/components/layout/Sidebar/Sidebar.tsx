@@ -26,12 +26,12 @@ const Sidebar = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/curriculo/experiencia/cadastro' >
+                        <NavLink to='/curriculo/experiencias/cadastro' >
                             Cadastrar Experiência
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='/curriculo/experiencia/listagem' >
+                        <NavLink to='/curriculo/experiencias/listagem' >
                             Lista de Experiências
                         </NavLink>
                     </li>
