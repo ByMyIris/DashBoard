@@ -7,7 +7,7 @@ export interface User {
 }
 
 export const getUserByEmail = async (email: string): Promise<User> => {
-    const response = await api.get('./usuarios', { params: { email } });
+    const response = await api.get('./users', { params: { email } });
     return response.data[0];
 }
 
