@@ -4,7 +4,7 @@ import * as Yup from 'yup';
 // import { Field, ErrorMessage } from 'formik';
 import Input from '../../../components/forms/input';
 
-import styles from './CadastrarPortfolio.module.css';
+//import styles from './CadastrarPortfolio.module.css';
 import { Portfolio, createOrUpdatePortfolio } from "../../../services/portfolioService";
 import { useLocation, useNavigate } from "react-router-dom";
 
@@ -45,9 +45,7 @@ const CadastrarPortfolio = () => {
         
     };
 
-    return (
-        <div className={styles.formWrapper}>
-            
+    return (            
             <Form
               initialValues={initialValues}
               validationSchema={validationSchema}
@@ -87,7 +85,6 @@ const CadastrarPortfolio = () => {
             </>
             )}
             </Form>
-        </div>
     );
 };
 
