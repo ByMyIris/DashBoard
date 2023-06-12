@@ -1,6 +1,6 @@
 import React from "react";
 
-import styles from './login.module.css';
+import styles from "./login.module.css";
 
 import Input from '../../components/forms/input';
 
@@ -14,12 +14,12 @@ import Form from '../../components/forms/form';
 import Button from "../../components/comoon/button";
 import Title from "../../components/comoon/title";
 
-interface LoginValues {
+interface User {
     email: string,
     password: string,
 }
 
-const initialValues: LoginValues = {
+const initialValues: User = {
     email: "",
     password: "",
 };
@@ -37,7 +37,7 @@ const Login = () => {
     const navigate = useNavigate();
     const { login } = useAuth();
 
-    const onSubmit = async (values: LoginValues) => {
+    const onSubmit = async (values: User) => {
         try {
             const user = await loginService(values);
             login(user);
