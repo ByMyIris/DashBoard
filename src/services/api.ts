@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-    baseURL: 'dpg-ci2vjbak728i8tbvtsmg-a.oregon-postgres.render.com',
+    baseURL: 'https://sistema-pessoal-api.onrender.com/api',
 });
 
 export default api;
