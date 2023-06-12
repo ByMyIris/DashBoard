@@ -1,11 +1,11 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 
-import { User } from '../services/userService';
+import { LoginValues } from '../services/authService';
 
 interface AuthContextProps {
     authenticated: boolean;
-    user: User;
-    login: (user: User) => void;
+    user: LoginValues;
+    login: (user: LoginValues) => void;
     logout: () => void;
     inLoading: boolean;
 }
@@ -16,26 +16,26 @@ export const useAuth = () => useContext(AuthContext);
 
 export const AuthProvider: React.FC = ({ children }) => {
     const [authenticated, setAuthenticated] = useState(false);
-    const [user, setUser] = useState({} as User);
+    const [user, setLoginValues] = useState({} as LoginValues);
     const [inLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-            setUser(JSON.parse(storedUser));
+        const storedLoginValues = localStorage.getItem("user");
+        if (storedLoginValues) {
+            setLoginValues(JSON.parse(storedLoginValues));
             setAuthenticated(true);
         }
         setIsLoading(false);
     }, []);
 
-    const login = (loggedInUser: User) => {
-        setUser(loggedInUser);
+    const login = (loggedInLoginValues: LoginValues) => {
+        setLoginValues(loggedInLoginValues);
         setAuthenticated(true);
-        localStorage.setItem("user", JSON.stringify(loggedInUser));
+        localStorage.setItem("user", JSON.stringify(loggedInLoginValues));
     };
 
     const logout = () => {
-        setUser({} as User);
+        setLoginValues({} as LoginValues);
         setAuthenticated(false);
         localStorage.removeItem("user");
     };

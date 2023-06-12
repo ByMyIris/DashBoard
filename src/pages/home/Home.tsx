@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 
 import styles from './Home.module.css';
 
-import { FaGraduationCap, FaBriefcase, FaFolder } from 'react-icons/fa';
-
 import Title from '../../components/comoon/title';
 import InfoBox from '../../components/comoon/infoBox';
 
@@ -56,19 +54,16 @@ const Home = () => {
                 <InfoBox 
                     title='Experiencias Acadêmicas'
                     value={experienciasAcademicas.length}
-                    icon={<FaGraduationCap size={65}/>}
                 />
 
                 <InfoBox 
                     title='Experiencias Profissional'
                     value={experienciasProfissional.length}
-                    icon={<FaBriefcase/>}
                 />
 
                 <InfoBox 
                     title='Projetos no Portfólio'
                     value={portfolio.length}
-                    icon={<FaFolder/>}
                 />
             </div>
         </main>

@@ -23,7 +23,7 @@ export const deletePortfolio = async (id: number | undefined): Promise<Portfolio
 }
 
 export const updatePortfolio = async (portfolio: Portfolio): Promise<Portfolio> => {
-    const response = await api.put<Portfolio>(`/portfolio/${portfolio.id}`, portfolio);
+    const response = await api.put(`/portfolio/${portfolio.id}`, portfolio);
     return response.data;
 }
 
